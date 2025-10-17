@@ -32,9 +32,3 @@ def getListOfPokemonData(linkList):
     for link in linkList:
         data.append(fetchData(link))
     return data
-
-
-try:
-    print(fetchData("pokemon", 5))
-except Exception as e:
-    print(e)
