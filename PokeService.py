@@ -7,7 +7,7 @@ def fetchData(route, retry = 0):
     # A GET request to the API
     try :
         for i in range(retry+1):
-            response = get(BASE_API_URL + route)
+            response = get(route)
             # Si le code d'erreur commence par 200
             if int(response.status_code / 100) == 2:
                 return response.json()
@@ -19,13 +19,19 @@ def fetchData(route, retry = 0):
 
 def getPokemonData(id):
     route = f'pokemon/{id}'
-    data = fetchData(route)
+    data = fetchData(BASE_API_URL + route)
     return data
 
 def getPokemonTypeService(type):
     route = f'type/{type}'
-    data = fetchData(route)
+    data = fetchData(BASE_API_URL + route)
     return data['pokemon']
+
+def getListOfPokemonData(linkList):
+    data = []
+    for link in linkList:
+        data.append(fetchData(link))
+    return data
 
 
 try:
