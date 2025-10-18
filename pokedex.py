@@ -1,4 +1,4 @@
-from PokeService import getPokemonData
+import CachedPokeService
 
 
 def showStats(stats):
@@ -11,17 +11,21 @@ def showStats(stats):
         print(f"║ {stat_name:<21} {base_stat:<3}")
     
     print("╚════════════════════════════════════╝")
+
 def ask_who_pokemon_user_want_see():
     while(True):
-        pokemon = input("Renseignez le nom du pokemon ou l'id du pokemon dont vous souhaitez affichez les statistique : ")    
+        pokemon = input("Renseignez le nom du pokemon ou l'id du pokemon dont vous souhaitez afficher les statistiques : ")    
         try:
-            response = getPokemonData(pokemon)
+            response = CachedPokeService.getPokemonData(pokemon)
             print("╔════════════════════════════════════╗")
-            print(f"║ ID\t\t\t{response["id"]}")
-            print(f"║ NAME\t\t\t{response["name"]}")
-            print(f"║ HEIGHT\t\t{response["height"]*10} cm")
-            print(f"║ WEIGHT\t\t{response["weight"]/10} kg")
+            print(f"║ ID\t\t\t{response['id']}")
+            print(f"║ NAME\t\t\t{response['name']}")
+            print(f"║ HEIGHT\t\t{response['height']*10} cm")
+            print(f"║ WEIGHT\t\t{response['weight']/10} kg")
             showStats(response['stats'])
+            
+            print("\n--- Appuyez sur Entrée pour revenir au menu ---")
+            input()
             return
         except:
             print("Entrée invalide")
