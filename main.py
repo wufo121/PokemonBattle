@@ -30,24 +30,29 @@ def userChoice():
 def executeChoice(choice):
     if choice == 1:
         ask_who_pokemon_user_want_see()
-    if choice == 2:
+    elif choice == 2:
         comparateur()
-    if choice == 3:
+    elif choice == 3:
         print("moyenne de point de vie par type")
         get_type_pokemon()
-    if choice == 4:
+    elif choice == 4:
         print("combat")
         combat()
-    if choice == 5:
-        print("Merci ! Au Revoir !")
-        # a remplacer
-
+    elif choice == 5:
+        return False
+    
+    return True
 
 
 def main():
     intro()
-    choice = userChoice()
-    executeChoice(choice)
+    
+    continuer = True
+    while continuer:
+        choice = userChoice()
+        continuer = executeChoice(choice)
+    
+    print("\n🎮 Merci d'avoir joué ! À bientôt, Dresseur ! 🎮")
 
 
 if __name__ == "__main__":
